@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>My Energy</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  	<!-- style.css -->
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+<!-- Modal Style -->
+	  <style>
+  .modal-header, h4, .close {
+    background-color: #5cb85c;
+    color:white !important;
+    text-align: center;
+    font-size: 30px;
+  }
+  .modal-footer {
+    background-color: #f9f9f9;
+  }
+  </style>
+<!-- Modal Style -->
+</head>
+<body>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/6.4.2/firebase-app.js"></script>
+
+<div class="container">
+	<div class="jumbotron text-center">
+		<h1>MyEnergy Invoice Auditing</h1><br>
+		<div id="currentTime"></div>
+	</div>
+
+<!-- Page Tabs for Login, Customer Search and Invoices -->
+
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#home">Login</a></li>
+    <li><a data-toggle="tab" href="#customer">Customer</a></li>
+    <li><a data-toggle="tab" href="#invoice">Invoices</a></li>
+  </ul>
+
+  	<div class="tab-content">
+
+<!-- Login/Authentication page tab -->
+
+    	<div id="home" class="tab-pane fade in active">
+
+<!--		<div class="tab-content"> -->
+			<div class="row">
+
+			  <!-- Sign-In Panel-->
+			  	<div class="col-lg-6">
+					<div class="panel panel-danger">
+
+						<div class="panel-heading">
+							<h3 class="panel-title">Analyst Sign-In</h3>
+						</div>
+
+				  		<div class="panel-body">
+
+						<!-- Sign-in Form (note the various input "types")-->
+							<form role="form">
+							  	<div class="form-group">
+									<label for="email-input">Email:</label>
+									<input class="form-control" id="email-input" type="email">
+							  	</div>
+							  	<div class="form-group">
+									<label for="password-input">Password:</label>
+									<input class="form-control" id="password-input" type="password">
+							  	</div>					  
+							  	<button class="btn btn-danger" id="gotocustomer" type="submit">Sign-In</button>
+							</form>
+				  		</div>
+					</div>
+			  	</div>
+
+
+			</div>
+		</div>
+
+<!-- Customer Search page tab -->
+
+	    <div id="customer" class="tab-pane fade">
+			<div class="tab-content">
+				<div class="panel panel-danger">
+					<div class="panel-heading">
+						<h3 class="panel-title">Customer Maintenance</h3>
+					</div>
+					<div class="panel-body">
+						<form  id="my-form" role="form">
+							<button type="button" class="btn btn-danger" id="searchAcct" data-toggle="modal" data-target="#myModal">Search</button>
+							<div class="form-group">
+								<label for="acctnuminput">Account Number</label>
+								<input type="text" class="form-control" id="acctnuminput" required>
+						  	</div>
+						  	<div class="form-group">
+								<label for="fnameinput" class="control-label">First Name</label>
+								<input type="text" class="form-control" id="fnameinput" required>
+						  	</div>
+							<div class="form-group">
+								<label for="lnameinput" class="control-label">Last Name</label>
+								<input type="text" class="form-control" id="lnameinput" required>
+							</div>
+							<div class="form-group">
+								<label for="addressinput">Address</label>
+								<input type="text" class="form-control" id="addressinput" required>
+							</div>
+							<div class="form-group">
+								<label for="cityinput">City</label>
+								<input type="text" class="form-control" id="cityinput" required>
+							</div>
+							<div class="form-group">
+								<label for="stateinput">State</label>
+								<input type="text" class="form-control" id="stateinput" required>
+							</div>	
+							<div class="form-group">
+								<label for="postalinput">Postal Code</label>
+								<input type="text" class="form-control" id="postalinput" required>
+							</div>	
+							<button type="button" class="btn btn-danger" id="addAcct">Add</button>																			
+						</form>
+					</div> 
+				</div>
+			</div>
+    	</div>
+
+<!-- Invoice List page tab -->
+
+    <div id="invoice" class="tab-pane fade">
+
+		<div class="tab-content">
+
+	<div class="panel panel-danger">
+  		<div class="panel-heading">
+  			<h3 class="panel-title">Invoice Maintenance</h3>
+  		</div>
+  		<div class="panel-body">
+  		<table class="table table-hover table-responsive">
+	        <thead>
+				<tr>
+				<th>Invoice Number</th>
+				<th>Invoice Dates</th>
+				<th>Rate Code</th>
+				<th>Usage kwh</th>
+				<th>Total Charges</th>
+				<th>Select</th>
+				</tr>
+			</thead>
+			<tbody id="display">
+			</tbody>
+		</table>
+  		</div>
+  	</div>
+
+		</div>
+
+	</div>
+	</div>
+					<!-- Modal -->
+			  	<div class="modal fade" id="myModal" role="dialog">
+			    	<div class="modal-dialog">
+			    
+			      		<!-- Modal content-->
+			      		<div class="modal-content">
+			        		<div class="modal-header">
+			          			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			          			<h4 class="modal-title">Customer Search</h4>
+			        		</div>
+				        <div class="modal-body">
+				          	<p>Some text in the modal.</p>
+							<form  id="my-form" role="form">
+								<div class="form-group">
+									<label for="acctnumsearch">Account Number</label>
+									<input type="text" class="form-control" id="acctnumsearch" required>
+								</div>
+								<div class="form-group">
+									<label for="lnamesearch" class="control-label">Last Name</label>
+									<input type="text" class="form-control" id="lnamesearch" required>
+								</div>
+							</form>
+				        </div>
+			        		<div class="modal-footer">
+			          			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			        		</div>
+			      		</div>
+			      
+			    	</div>
+			  	</div>
+  				<!-- Modal -->
+</div>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery.js"></script>
+
+  <!-- Script -->
+  <script>
+    // Capture Menu Click
+	
+	$("#home").click(function(event) {
+        console.log("You made it to the #home code inside html");
+		// prevent form from trying to submit/refresh the page
+		//	event.preventDefault();
+	  
+		$("#home").show();
+		$("#customer").hide();
+		$("#invoice").hide();
+		$("#myModal").hide();
+    });
+	
+    $("#customer").click(function(event) {
+        console.log("You made it to the #customer code inside html");	
+		// prevent form from trying to submit/refresh the page
+	//	event.preventDefault();
+	  
+	  	$("#customer").show();
+		$("#home").hide();
+		$("#invoice").hide();
+		$("#myModal").hide();
+    });
+
+        $("#gotocustomer").click(function(event) {
+        console.log("You made it to the gotocustomer code inside html");	
+	
+		// prevent form from trying to submit/refresh the page
+		//	event.preventDefault();
+	  
+	  	// Select tab by name
+		$('.nav-tabs a[href="#customer"]').tab('show');
+	  	// $("#customer").show();
+		$("#home").hide();
+		$("#invoice").hide();
+		$("#myModal").hide();
+    });
+	
+        $("#invoice").click(function(event) {
+        console.log("You made it to the #invoice code inside html");	
+	
+		// prevent form from trying to submit/refresh the page
+		//	event.preventDefault();
+	  
+	  	$("#invoice").show();
+		$("#home").hide();
+		$("#customer").hide();
+		$("#myModal").hide();
+    });
+	
+	
+  </script>
+
+
+</body>
+</html>
