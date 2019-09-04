@@ -41,3 +41,7 @@ h1.jumboText {
 .panel-warning {
     border-color: #f9ec8c;
 }
+
+.pt-3-half {
+padding-top: 1.4rem;
+}

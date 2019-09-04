@@ -20,8 +20,17 @@
 
   <!-- Custom styles for this page -->
   <link href="assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-  <script src="assets/images/"></script>
 
+  <!-- Customer application files -->
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+	<script src="https://www.gstatic.com/firebasejs/6.5.0/firebase-app.js"></script>
+	
+    <!-- jQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+	<script src="assets/js/app.js"></script>
+	<script src="assets/images/"></script>
+	
 </head>
 
 <body id="page-top">
@@ -350,7 +359,7 @@
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered table-striped text-center" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
 						<th>Account Number</th>
@@ -358,6 +367,7 @@
 						<th>Invoice Number</th>
 						<th>Invoice Dates</th>
 						<th>Total Charges</th>
+						<th>Invoice Status</th>
                     </tr>
                   </thead>
                   <tfoot>
@@ -367,6 +377,7 @@
 						<th>Invoice Number</th>
 						<th>Invoice Dates</th>
 						<th>Total Charges</th>
+						<th>Invoice Status</th>
                     </tr>
                   </tfoot>
                   <tbody>
@@ -376,6 +387,10 @@
 					  <td><a href="assets/pdf/STrapper201906.pdf">850411</a></td>
                       <td>2019/06/20</td>
                       <td>$157.08</td>
+					  <td>
+						<span class="invoice-release"><button type="button"
+						class="btn btn-danger btn-rounded btn-sm my-0" data-toggle="modal" data-target="#invModal">Release</button></span>
+					  </td>
                     </tr>
                     <tr>
                       <td>NRG012345</td>
@@ -383,6 +398,10 @@
 					  <td><a href="assets/pdf/STrapper201907.pdf">850735</a></td>
                       <td>2019/07/20</td>
                       <td>$191.19</td>
+					  <td>
+						<span class="invoice-release"><button type="button"
+						class="btn btn-danger btn-rounded btn-sm my-0" data-toggle="modal" data-target="#invModal">Release</button></span>
+					  </td>					  
                     </tr>
 					<tr>
                       <td>NRG012345</td>
@@ -390,6 +409,10 @@
 					  <td><a href="assets/pdf/STrapper201908.pdf">851059</a></td>
                       <td>2019/08/20</td>
                       <td>$222.59</td>
+					  <td>
+						<span class="invoice-release"><button type="button"
+						class="btn btn-danger btn-rounded btn-sm my-0" data-toggle="modal" data-target="#invModal">Release</button></span>
+					  </td>					  
                     </tr>
 					<tr>
                       <td>NRG012345</td>
@@ -397,6 +420,10 @@
 					  <td><a href="assets/pdf/STrapper201909.pdf">851383</a></td>
                       <td>2019/09/20</td>
                       <td>$203.86</td>
+					  <td>
+						<span class="invoice-release"><button type="button"
+						class="btn btn-danger btn-rounded btn-sm my-0" data-toggle="modal" data-target="#invModal">Release</button></span>
+					  </td>					  
                     </tr>
                   </tbody>
                 </table>
@@ -449,6 +476,29 @@
       </div>
     </div>
   </div>
+    <!-- Logout Modal--> 
+ 
+	<!-- Invoice Release Modal -->
+	<div class="modal fade" id="invModal" role="dialog">
+		<div class="modal-dialog">
+	
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Invoice Release</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+			<div class="modal-body">
+				<p>Your Invoice has been released for processing.</p>
+			</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button> 
+				</div>
+			</div>
+	  
+		</div>
+	</div>
+	<!-- Invoice Release Modal -->
 
   <!-- Bootstrap core JavaScript-->
   <script src="assets/vendor/jquery/jquery.min.js"></script>

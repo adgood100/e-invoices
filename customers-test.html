@@ -3,13 +3,16 @@
 
 <head>
 
+  <!-- customer-test.html testing table add -->
+
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>MyEnergy - Charts</title>
+  <title>MyEnergy - Customers</title>
+  
 
   <!-- Custom fonts for this template-->
   <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -17,7 +20,7 @@
 
   <!-- Custom styles for this template-->
   <link href="assets/css/sb-admin-2.min.css" rel="stylesheet">
-
+  
   <!-- Customer application files -->
 	<!-- The core Firebase JS SDK is always required and must be listed first -->
 	<script src="https://www.gstatic.com/firebasejs/6.5.0/firebase-app.js"></script>
@@ -27,7 +30,6 @@
 
 	<script src="assets/js/app.js"></script>
 	<script src="assets/images/"></script>
-	
 
 </head>
 
@@ -86,57 +88,14 @@
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Manager Utilities:</h6>
-            <a class="collapse-item" href="utilities-color.html">Invoice Release</a>
-            <a class="collapse-item" href="utilities-border.html">Invoice Refer for Review</a>
- <!--           <a class="collapse-item" href="utilities-animation.html">Animations</a> -->
-<!--            <a class="collapse-item" href="utilities-other.html">Other</a> -->
+            <a class="collapse-item" href="#">Invoice Release</a>
+            <a class="collapse-item" href="#">Invoice Refer for Review</a>
           </div>
         </div>
       </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider">
-
-      <!-- Heading -->
-	  <!--
-      <div class="sidebar-heading">
-        Addons
-      </div> -->
-
-      <!-- Nav Item - Pages Collapse Menu -->
-	  <!--
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-fw fa-folder"></i>
-          <span>Pages</span>
-        </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Login Screens:</h6>
-            <a class="collapse-item" href="login.html">Login</a>
-            <a class="collapse-item" href="register.html">Register</a>
-            <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-            <div class="collapse-divider"></div>
-            <h6 class="collapse-header">Other Pages:</h6>
-            <a class="collapse-item" href="404.html">404 Page</a>
-            <a class="collapse-item" href="blank.html">Blank Page</a>
-          </div>
-        </div>
-      </li>
--->
-      <!-- Nav Item - Charts -->
-      <li class="nav-item active">
-        <a class="nav-link" href="charts.html">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Charts</span></a>
-      </li>
-
-      <!-- Nav Item - Tables -->
-      <li class="nav-item">
-        <a class="nav-link" href="tables.html">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Tables</span></a>
-      </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
@@ -342,62 +301,161 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Charts</h1>
-          <p class="mb-4">Chart.js is a third party plugin that is used to generate the charts in this theme. The charts below have been customized - for further customization options, please visit the <a target="_blank" href="https://www.chartjs.org/docs/latest/">official Chart.js documentation</a>.</p>
+          <h1 class="h3 mb-4 text-gray-800">Verification</h1>
+		  
+		  <!-- Customer Search page tab -->
 
-          <!-- Content Row -->
-          <div class="row">
+	    <div id="customer">
+			<div>
+				<div class="panel panel-warning">
+<!--
+					<div class="panel-heading">
+						<h3 class="panel-title">Account Maintenance</h3>
+					</div>
+-->					
+					<div class="panel">
+						<button type="button" class="btn btn-primary" id="searchAcct" data-toggle="modal" data-target="#myModal">Search Account</button>
+						<br>	
+<!--						
+						<div class="panel-heading"><h4 class="panel-title m-0 font-weight-bold">Customer List</h4></div>
+						<div class="panel-body">
+						<table class="table table-bordered" id="custTableHead" width="100%" cellspacing="0">						
+							<thead>
+								<tr>
+								<th>Account Number</th>
+								<th>Customer Name</th>
+								<th>Street</th>
+								<th>State</th>
+								<th>Postal Code</th>
+								<th>Edit</th>
+								</tr>
+							</thead>
+							<tbody id="displayCust">
+							</tbody>
+						</table>
+						</div>
+-->
+					</div>	
+					<br>
+<!-- Editable table -->
+					<div class="card">
+					  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Customer List</h3>
+					  <div class="card-body">
+						<div id="table" class="table-editable">
+						  <span class="table-add float-right mb-3 mr-2">
+							<a href="#!" class="text-success">
+								<i class="fas fa-plus fa-2x" aria-hidden="true" id="displayCustomer" data-toggle="modal" data-target="#customerModal">
+								</i>
+							</a>
+						  </span>
+						  <table class="table table-bordered table-responsive-md table-striped text-center">
+							<thead>
+							  <tr>
+								<th class="text-center">Account Number</th>
+								<th class="text-center">Customer Name</th>
+								<th class="text-center">Address</th>
+								<th class="text-center">City</th>
+								<th class="text-center">State</th>
+								<th class="text-center">Postal Code</th>
+								<th class="text-center">Remove</th>
+							  </tr>
+							</thead>
+							<tbody id="displayCust">
+							  <tr>
+								<td class="pt-3-half" contenteditable="true">NRG012345</td>
+								<td class="pt-3-half" contenteditable="true">Sam Tapper</td>
+								<td class="pt-3-half" contenteditable="true">2280 Sundown Lane </td>
+								<td class="pt-3-half" contenteditable="true">Austin</td>
+								<td class="pt-3-half" contenteditable="true">TX</td>
+								<td class="pt-3-half" contenteditable="true">78749</td>
+					<!--              <span class="table-up"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-up"
+										aria-hidden="true"></i></a></span>
+								  <span class="table-down"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-down"
+										aria-hidden="true"></i></a></span>
+								</td>
+					-->
+								<td>
+								  <span class="table-remove"><button type="button"
+									  class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
+								</td>
+							  </tr>
+							  <!-- This is our clonable table line -->
+							  <tr>
+								<td class="pt-3-half" contenteditable="true">NRG067890</td>
+								<td class="pt-3-half" contenteditable="true">Terry Olasky</td>
+								<td class="pt-3-half" contenteditable="true">3923 Colonial Drive</td>
+								<td class="pt-3-half" contenteditable="true">Houston</td>
+								<td class="pt-3-half" contenteditable="true">TX</td>			
+								<td class="pt-3-half" contenteditable="true">77024</td>
+								<td class="pt-3-half">
+					<!--              <span class="table-up"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-up"
+										aria-hidden="true"></i></a></span>
+								  <span class="table-down"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-down"
+										aria-hidden="true"></i></a></span>
+								</td>
+								<td>
+					-->
+								  <span class="table-remove"><button type="button"
+									  class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
+								</td>
+							  </tr>
+							  <!-- This is our clonable table line -->
+							  <tr>
+								<td class="pt-3-half" contenteditable="true">NRG071506</td>
+								<td class="pt-3-half" contenteditable="true">Elisha Smith</td>
+								<td class="pt-3-half" contenteditable="true">200 Ocate Mesa Trail</td>
+								<td class="pt-3-half" contenteditable="true">Liberty Hill</td>
+								<td class="pt-3-half" contenteditable="true">TX</td>			
+								<td class="pt-3-half" contenteditable="true">78642</td>
+					<!--            <td class="pt-3-half">
+								  <span class="table-up"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-up"
+										aria-hidden="true"></i></a></span>
+								  <span class="table-down"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-down"
+										aria-hidden="true"></i></a></span>
+								</td>
+					-->
+								<td>
+								  <span class="table-remove"><button type="button"
+									  class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
+								</td>
+							  </tr>
+							  <!-- This is our clonable table line -->
+							  <tr class="hide">
+								<td class="pt-3-half" contenteditable="true">NRG033506</td>
+								<td class="pt-3-half" contenteditable="true">Mitchel Gallagher</td>
+								<td class="pt-3-half" contenteditable="true">1517 Portica</td>
+								<td class="pt-3-half" contenteditable="true">Round Rock</td>
+								<td class="pt-3-half" contenteditable="true">TX</td>						
+								<td class="pt-3-half" contenteditable="true">78680</td>
+					<!--            <td class="pt-3-half">
+								  <span class="table-up"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-up"
+										aria-hidden="true"></i></a></span>
+								  <span class="table-down"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-down"
+										aria-hidden="true"></i></a></span>
+								</td>
+					-->
+								<td>
+								  <span class="table-remove"><button type="button"
+									  class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
+								</td>
+							  </tr>
+							</tbody>
+						  </table>
+						</div>
+					  </div>
+					</div>
+<!-- Editable table -->
+					
+					<br>
+<!--					<div class="panel-body card mb-4"> delet this 
 
-            <div class="col-xl-8 col-lg-7">
+					</div> delete this -->
+				</div>
+			</div>
+    	</div>
 
-              <!-- Area Chart -->
-              <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Area Chart</h6>
-                </div>
-                <div class="card-body">
-                  <div class="chart-area">
-                    <canvas id="myAreaChart"></canvas>
-                  </div>
-                  <hr>
-                  Styling for the area chart can be found in the <code>/js/demo/chart-area-demo.js</code> file.
-                </div>
-              </div>
-
-              <!-- Bar Chart -->
-              <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Bar Chart</h6>
-                </div>
-                <div class="card-body">
-                  <div class="chart-bar">
-                    <canvas id="myBarChart"></canvas>
-                  </div>
-                  <hr>
-                  Styling for the bar chart can be found in the <code>/js/demo/chart-bar-demo.js</code> file.
-                </div>
-              </div>
-
-            </div>
-
-            <!-- Donut Chart -->
-            <div class="col-xl-4 col-lg-5">
-              <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Donut Chart</h6>
-                </div>
-                <!-- Card Body -->
-                <div class="card-body">
-                  <div class="chart-pie pt-4">
-                    <canvas id="myPieChart"></canvas>
-                  </div>
-                  <hr>
-                  Styling for the donut chart can be found in the <code>/js/demo/chart-pie-demo.js</code> file.
-                </div>
-              </div>
-            </div>
-          </div>
+<!-- Customer Search page tab -->
+		  
 
         </div>
         <!-- /.container-fluid -->
@@ -444,24 +502,141 @@
       </div>
     </div>
   </div>
+  <!-- Logout Modal--> 
+ 
+	<!-- Customer Search Modal -->
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog">
+	
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Customer Invoice Search</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+			<div class="modal-body">
+				<p>Please enter customer account number and last name.</p>
+				<form  id="my-form" role="form">
+					<div class="form-group">
+						<label for="acctnumsearch">Account Number</label>
+						<input type="text" class="form-control" id="acctnumsearch" required>
+					</div>
+					<div class="form-group">
+						<label for="lnamesearch" class="control-label">Last Name</label>
+						<input type="text" class="form-control" id="lnamesearch" required>
+					</div>
+				</form>
+			</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button> 
+					<a class="btn btn-primary" href="invoices.html">Search</a>
+				</div>
+			</div>
+	  
+		</div>
+	</div>
+	<!-- Customer Search Modal -->
 
-  <!-- Bootstrap core JavaScript-->
-  <script src="assets/vendor/jquery/jquery.min.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- Customer Add Modal -->
+	<div class="modal fade" id="customerModal" tabindex="-1" role="dialog">
+		<div class="modal-dialog">
+	
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Customer Add Maintenance</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+			<div class="modal-body">
+				<p>Please enter customer account detail.</p>
+				<form  id="my-form" role="form">
+					<div class="panel-heading card-body card-header py-3 border-bottom-warning">
+						<h4 class="panel-title m-0 font-weight-bold">Customer Maintenance</h4>
+					</div>							
+					<div class="form-group card-body">
+						<label for="acctnuminput">Account Number</label>
+						<input type="text" class="form-control" id="acctnuminput" required>
+					</div>
+					<div class="form-group card-body">
+						<label for="fnameinput" class="control-label">First Name</label>
+						<input type="text" class="form-control" id="fnameinput" required>
+					</div>
+					<div class="form-group card-body">
+						<label for="lnameinput" class="control-label">Last Name</label>
+						<input type="text" class="form-control" id="lnameinput" required>
+					</div>
+					<div class="form-group card-body">
+						<label for="addressinput">Address</label>
+						<input type="text" class="form-control" id="addressinput" required>
+					</div>
+					<div class="form-group card-body">
+						<label for="cityinput">City</label>
+						<input type="text" class="form-control" id="cityinput" required>
+					</div>
+					<div class="form-group card-body">
+						<label for="stateinput">State</label>
+						<input type="text" class="form-control" id="stateinput" required>
+					</div>	
+					<div class="form-group card-body">
+						<label for="postalinput">Postal Code</label>
+						<input type="text" class="form-control" id="postalinput" required>
+					</div>													
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-default" data-dismiss="modal">Close</button> 
+<!--				<input type="submit" class="btn btn-warning" id="addMe" value="Submit"> -->
+				<button class="btn btn-warning customer" id="addMe">Add</button> 
+			</div>
+				
+			</div>
+	  
+		</div>
+	</div>
+	<!-- Customer Search Modal -->
+	
+	<!-- Testing Add Customer Modal -->
+<!--	<script>
+//	$('#addme').click(function() {	
+	$(document.body).on('click', '#addMe', function(){	
+	
+		console.log("Entering my-form block:...");
+		var customerAccountNum = $('#acctnuminput').val().trim();
+		console.log("This is the value of account number:..." + customerAccountNum);
+		var customerFirstName = $('#fnameinput').val().trim();
+		console.log("This is the value of first name:..." + customerFirstName);
+		var customerLastName = $('#lnameinput').val().trim();
+		console.log("This is the value of last name:..." + customerLastName);
+		var customerStreet = $('#addressinput').val().trim(); 
+		console.log("This is the value of address:..." + customerStreet);
+		var customerCity = $('#cityinput').val().trim();
+		console.log("This is the value of city:..." + customerCity);
+		var customerState = $('#stateinput').val().trim();
+		console.log("This is the value of state:..." + customerState);
+		var customerPostalCode = $('#postalinput').val().trim();
+		console.log("This is the value of postal code:" + customerPostalCode);
+		var customerFullName = customerFirstName + " " + customerLastName;
+		console.log("This is the value of Customer Name:" + customerFullName);		
 
-  <!-- Core plugin JavaScript-->
-  <script src="assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+		// Save new value to Firebase
 
-  <!-- Custom scripts for all pages-->
-  <script src="assets/js/sb-admin-2.min.js"></script>
+//	});	
+<!--	</script>  
+	<!-- Testing Add Customer Modal -->
+	
+    <!-- Firebase Reference -->
+<!--	<script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script> -->
+	
+	<!-- Bootstrap core JavaScript-->
+	<script src="assets/vendor/jquery/jquery.min.js"></script>
+	<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Page level plugins -->
-  <script src="assets/vendor/chart.js/Chart.min.js"></script>
+	<!-- Core plugin JavaScript-->
+	<script src="assets/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-  <!-- Page level custom scripts -->
-  <script src="assets/js/demo/chart-area-demo.js"></script>
-  <script src="assets/js/demo/chart-pie-demo.js"></script>
-  <script src="assets/js/demo/chart-bar-demo.js"></script>
+	<!-- Custom scripts for all pages-->
+	<script src="assets/js/sb-admin-2.min.js"></script>
+<!--	  <script src="assets/js/customer.js"></script> -->
 
 </body>
 

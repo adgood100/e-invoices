@@ -14,7 +14,7 @@
   };
 
   // Initialize Firebase
-	firebase.initializeApp(firebaseConfig);
+  firebase.initializeApp(firebaseConfig);
 
 // Create a variable to reference the database
 	var database = firebase.database();
@@ -78,10 +78,8 @@
 
 // *** Add Customer Process ***
 
-	$(document.body).on('click', '#addMe', function(e){	
+	$(document.body).on('click', '#addMe', function(){	
 	
-		e.preventDefault();
-		
 		console.log("Entering my-form block:...");
 		customerAccountNum = $('#acctnuminput').val().trim();
 		console.log("This is the value of account number:..." + customerAccountNum);
@@ -110,7 +108,7 @@
 			customerCity: customerCity,
 			customerState: customerState,
 			customerPostalCode: customerPostalCode,
-			customerFullName: customerFullName
+			customerFullName: customerFullName,
 		});
 
 		//Reload needed for the removal to work on last element
@@ -157,59 +155,149 @@
         );
     });
 
-// *** Edit Customer Process ***
 	
-	//When you click on the edit button, it asks you for each item again and sets it to the database 
-	
-	$(document.body).on('click', '.editme', function(e){
+	//When you click on the edit button, it asks you for each item again and sets it to the database
+	$(document.body).on('click', '.editme', function(){
 		
 		var x = $(this).attr("data-indexNum");
 		var num = x;
 		
-		e.preventDefault();
-		
 		console.log("This is the value of num in .editme:..." + num);
 
-//		name = prompt("What do you want the name to be?");
-//		destination = prompt("What do you want the destination to be?");
-//		firstTrainTime = prompt("What time did the first train arrive? (HH:mm - military time)");
-//		frequency = prompt("How often does it arrive? (in minutes)");
+		name = prompt("What do you want the name to be?");
+		destination = prompt("What do you want the destination to be?");
+		firstTrainTime = prompt("What time did the first train arrive? (HH:mm - military time)");
+		frequency = prompt("How often does it arrive? (in minutes)");
 
 
-		database.ref().child(customerIDs[num]).set({
-//			name: name,
-//			destination: destination,
-//			firstTrainTime: firstTrainTime,
-//			frequency: frequency
-			customerAccountNum: customerAccountNum,
-			customerFirstName: customerFirstName,
-			customerLastName: customerLastName,
-			customerStreet: customerStreet,
-			customerCity: customerCity,
-			customerState: customerState,
-			customerPostalCode: customerPostalCode,
-			customerFullName: customerFullName
+		database.ref().child(trainIDs[num]).set({
+			name: name,
+			destination: destination,
+			firstTrainTime: firstTrainTime,
+			frequency: frequency
 		});
 
 		//Must reload to show the database changes on the page
 		location.reload();
 
 });
-
-// *** Delete Customer Process ***
 	
 	//When you click on the remove buttons, it gets the row it's on and deletes it from the database
-	$(document.body).on('click', '.removeme', function(e){
+	$(document.body).on('click', '.removeme', function(){
 
 		var y = $(this).attr("data-indexNum");
 		var num = y;
-		
-		e.preventDefault();
-		
+				
 		console.log("This is the value of num in .removeme:..." + num);		
-		database.ref().child(customerIDs[num]).remove();
+		database.ref().child(trainIDs[num]).remove();
 
 		//Must reload to show the database changes on the page
 		location.reload();
 });
 	
+	//When you click on the Sign-in button, it takes you to Customer Tab
+//	$(document.body).on('click', '.gotocustomer', function(){
+
+//    console.log("You made it to the #customer code inside js");	
+		// prevent form from trying to submit/refresh the page
+//		event.preventDefault();
+	  
+	  	// Select tab by name
+//		// $('.nav-tabs a[href="#customer"]').tab('show');
+//	  	$("#customer").show(); 
+//		$("#home").hide();
+//		$("#invoice").hide();
+//		$("#myModal").hide();
+// });	
+
+// Testing New Customer Table Add function (moved from customer.js to app.js)	
+
+//const $tableID = $('#table');
+// const $BTN = $('#export-btn');
+// const $EXPORT = $('#export');
+
+// const newTr = `
+//<tr class="hide">
+//  <td class="pt-3-half" contenteditable="true">Example</td>
+//  <td class="pt-3-half" contenteditable="true">Example</td>
+//  <td class="pt-3-half" contenteditable="true">Example</td>
+//  <td class="pt-3-half" contenteditable="true">Example</td>
+//  <td class="pt-3-half" contenteditable="true">Example</td>
+//  <td class="pt-3-half">
+//   <span class="table-up"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-up" aria-hidden="true"></i></a></span>
+//    <span class="table-down"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-down" aria-hidden="true"></i></a></span>
+//  </td>
+//  <td>
+//    <span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0 waves-effect waves-light">Remove</button></span>
+//  </td>
+//</tr>`;
+
+// $('.table-add').on('click', 'i', () => {
+
+//   const $clone = $tableID.find('tbody tr').last().clone(true).removeClass('hide table-line');
+
+//   if ($tableID.find('tbody tr').length === 0) {
+
+//     $('tbody').append(newTr);
+//   }
+
+//   $tableID.find('table').append($clone);
+// });
+
+// $tableID.on('click', '.table-remove', function () {
+
+//   $(this).parents('tr').detach();
+// });
+
+// $tableID.on('click', '.table-up', function () {
+
+//   const $row = $(this).parents('tr');
+
+//   if ($row.index() === 1) {
+//     return;
+//   }
+
+//   $row.prev().before($row.get(0));
+// });
+
+// $tableID.on('click', '.table-down', function () {
+
+//   const $row = $(this).parents('tr');
+//   $row.next().after($row.get(0));
+// });
+
+ // A few jQuery helpers for exporting only
+// jQuery.fn.pop = [].pop;
+// jQuery.fn.shift = [].shift;
+
+// $BTN.on('click', () => {
+
+//   const $rows = $tableID.find('tr:not(:hidden)');
+//   const headers = [];
+//   const data = [];
+
+//   // Get the headers (add special header logic here)
+//   $($rows.shift()).find('th:not(:empty)').each(function () {
+
+//     headers.push($(this).text().toLowerCase());
+//   });
+
+   // Turn all existing rows into a loopable array
+//   $rows.each(function () {
+//     const $td = $(this).find('td');
+//     const h = {};
+
+     // Use the headers from earlier to name our hash keys
+//     headers.forEach((header, i) => {
+
+//       h[header] = $td.eq(i).text();
+//     });
+//
+//     data.push(h);
+//   });
+
+//   // Output the result
+//   $EXPORT.text(JSON.stringify(data));
+// });
+
+// Testing New Customer Table Add function (moved from customer.js to app.js)	
