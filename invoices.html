@@ -30,7 +30,7 @@
 
 	<script src="assets/js/app.js"></script>
 	<script src="assets/images/"></script>
-	
+
 </head>
 
 <body id="page-top">
@@ -90,8 +90,7 @@
             <h6 class="collapse-header">Manager Utilities:</h6>
             <a class="collapse-item" href="#">Invoice Release</a>
             <a class="collapse-item" href="#">Invoice Refer for Review</a>
- <!--           <a class="collapse-item" href="utilities-animation.html">Animations</a> -->
-<!--            <a class="collapse-item" href="utilities-other.html">Other</a> -->
+
           </div>
         </div>
       </li>
@@ -321,6 +320,10 @@
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary">Invoice Verification</h6>
+			  <br>
+			  <span class="invoice-search">
+				<button type="button" class="btn btn-primary btn-rounded btn-sm my-0" data-toggle="modal" data-target="#myModal"> Search</button>
+			  </span> 
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -346,9 +349,9 @@
                     </tr>
                   </tfoot>
 				  <!--- Invoices -->
-                  <tbody>
+                  <tbody id="myTable">
 					<!--- Tapper Invoice -->
-                    <tr>
+                    <tr class="hideMe">
                       <td>NRG012345</td>
                       <td>Tapper</td>					  
 					  <td><a href="assets/pdf/STrapper201906.pdf">850411</a></td>
@@ -358,8 +361,8 @@
 						<span class="invoice-release"><button type="button"
 						class="btn btn-danger btn-rounded btn-sm my-0" data-toggle="modal" data-target="#invModal">Release</button></span>
 					  </td>
-                    </tr>
-                    <tr>
+                    </tr class="hideMe">
+                    <tr class="hideMe">
                       <td>NRG012345</td>
                       <td>Tapper</td>					  
 					  <td><a href="assets/pdf/STrapper201907.pdf">850735</a></td>
@@ -370,7 +373,7 @@
 						class="btn btn-danger btn-rounded btn-sm my-0" data-toggle="modal" data-target="#invModal">Release</button></span>
 					  </td>					  
                     </tr>
-					<tr>
+					<tr class="hideMe">
                       <td>NRG012345</td>
                       <td>Tapper</td>					  
 					  <td><a href="assets/pdf/STrapper201908.pdf">851059</a></td>
@@ -381,7 +384,7 @@
 						class="btn btn-danger btn-rounded btn-sm my-0" data-toggle="modal" data-target="#invModal">Release</button></span>
 					  </td>					  
                     </tr>
-					<tr>
+					<tr class="hideMe">
                       <td>NRG012345</td>
                       <td>Tapper</td>					  
 					  <td><a href="assets/pdf/STrapper201909.pdf">851383</a></td>
@@ -394,7 +397,7 @@
                     </tr>
 					<!--- Tapper Invoice -->
 					<!--- Olasky Invoice -->
-                    <tr>
+                    <tr class="hideMe">
                       <td>NRG067890</td>
                       <td>Olasky</td>					  
 					  <td><a href="assets/pdf/TOlasky201906.pdf">850305</a></td>
@@ -405,7 +408,7 @@
 						class="btn btn-danger btn-rounded btn-sm my-0" data-toggle="modal" data-target="#invModal">Release</button></span>
 					  </td>
                     </tr>
-                    <tr>
+                    <tr class="hideMe">
                       <td>NRG067890</td>
                       <td>Olasky</td>					  
 					  <td><a href="assets/pdf/TOlasky201907.pdf">850629</a></td>
@@ -416,7 +419,7 @@
 						class="btn btn-danger btn-rounded btn-sm my-0" data-toggle="modal" data-target="#invModal">Release</button></span>
 					  </td>					  
                     </tr>
-					<tr>
+					<tr class="hideMe">
                       <td>NRG067890</td>
                       <td>Olasky</td>					  
 					  <td><a href="assets/pdf/TOlasky201908.pdf">850953</a></td>
@@ -427,7 +430,7 @@
 						class="btn btn-danger btn-rounded btn-sm my-0" data-toggle="modal" data-target="#invModal">Release</button></span>
 					  </td>					  
                     </tr>
-					<tr>
+					<tr class="hideMe">
                       <td>NRG067890</td>
                       <td>Olasky</td>					  
 					  <td><a href="assets/pdf/TOlasky201909.pdf">851277</a></td>
@@ -507,13 +510,46 @@
 				<p>Your Invoice has been released for processing.</p>
 			</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button> 
+					<button type="button" class="btn btn-success" data-dismiss="modal">Close</button> 
 				</div>
 			</div>
 	  
 		</div>
 	</div>
 	<!-- Invoice Release Modal -->
+	
+	<!-- Customer Search Modal -->
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog">
+	
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Customer Invoice Search</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+			<div class="modal-body">
+				<p>Please enter customer account number and last name.</p>
+				<form  id="my-form" role="form">
+					<div class="form-group">
+						<label for="acctnumsearch">Account Number</label>
+						<input type="text" class="form-control sInput" id="acctnumsearch" required>
+					</div>
+					<div class="form-group">
+						<label for="lnamesearch" class="control-label">Last Name</label>
+						<input type="text" class="form-control sInput" id="myInput" required>
+					</div>
+				</form>
+			</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-success" data-dismiss="modal">Search</button> 
+<!--					<a id="mytable" class="btn btn-primary" href="invoices.html">Search</a> -->
+				</div>
+			</div>
+	  
+		</div>
+	</div>
+	<!-- Customer Search Modal -->	
 
   <!-- Bootstrap core JavaScript-->
   <script src="assets/vendor/jquery/jquery.min.js"></script>
@@ -531,6 +567,26 @@
 
   <!-- Page level custom scripts -->
   <script src="assets/js/demo/datatables-demo.js"></script>
+
+<!-- Launch Search Modal when page loads -->
+  <script>
+$(document).ready(function(){
+
+//	$("tr").hide(); 	Take care in using this because it will hide all Table records including the header records
+	$(".hideMe").hide();
+	
+	$("#myModal").modal();
+	
+//	$("#myInput").on("keyup", function() { 	Switched from "id" to "class" selector so that I could apply search functionality to multiple input fields
+	$(".sInput").on("keyup", function() {	
+		var value = $(this).val().toLowerCase();
+		$("#myTable tr").filter(function() {
+			$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+
+});
+</script>
 
 </body>
 
